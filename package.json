@@ -1,0 +1,18 @@
+{
+  "name": "nodejs_cli_project",
+  "version": "1.0.0",
+  "description": "Adeo NodeJS Test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/goodengrish/nodejs_cli"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "adam_stefaniak",
+  "license": "ISC"
+}
