@@ -364,7 +364,8 @@ const data = [{
               {name: 'Kiwa Hirsuta'},
               {name: 'Zooplankton'},
               {name: 'Tarantula'},
-              {name: 'Oryx'}]
+              {name: 'Oryx'},
+			  {name: 'Toryx'}]
         }]
   }
 ]

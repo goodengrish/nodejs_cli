@@ -1,9 +1,9 @@
-// écrire la documentation d'installation / utilisation
-// commenter et renommer les fonctions en anglais
-
 const dataFile = require('./data.js');
 const dataToRead = dataFile.data;
 
+/*
+* main function
+*/
 function interprate(){
 	// Number of arguments verification
 	if (process.argv.length != 3){
@@ -57,18 +57,19 @@ function interprate(){
 	}
 }
 
+/*
+* Function displaying all the animals matching a given pattern within their names
+*/
 function filterCommand(commandOption){
 	
-	let filteredData = {};
 	let values = Object.values(dataToRead);
 	let values2 = null;
 	let values3 = null;
-	let animals = {};
+	let filteredData = {};
 	let people = {};
+	let animals = {};
 	var i, j, k;
 	
-	// optimiser la complexité
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
 	for(i = 0; i < values.length; i++){
 		
 		values2 = Object.values(values[i].people);
@@ -80,39 +81,68 @@ function filterCommand(commandOption){
 			for (k = 0; k < values3.length; k++){
 				
 				if (values3[k].name.includes(commandOption)){
-					if (!animals['name'].includes(values3[k].name)){
+					
+					//if (filteredData['name'].indexOf(values[i].name) == -1){
+						filteredData['name'] = values[i].name;
+						filteredData['people'] = {};
+					//}
+					
+					//if (people['name'].indexOf(values2[j].name) == -1){
+						people['name'] = values2[j].name;
+						people['animals'] = {};
+					//}
+					
+					//if (animals['name'].indexOf(values3[k].name) == -1){
 						
 						animals['name'] = values3[k].name;
-						if (!people['name'].includes(values2[j].name)){
-							people['name'] = values2[j].name;
-							people['animals'] = {};
-						}
-						people['animals'] = animals;
-						animals = {};
-					}
-					filteredData['name'] = values[i].name;
+						console.log(animals);
+						
+					//}
+					
+					// à modifier : ajouter les animaux en prenant en compte le nom de la personne
+					// utiliser la même sémentique : values[i].people pour ajouter au bon indice
+					people['animals'] = animals;
+					
+					// ici on écrase à chaque fois 
 					filteredData['people'] = people;
-					people = {};
+					
+					console.log(people);
 				}
 			}
 		}
 	}
 	
-	console.log(filteredData);
+	//console.log(filteredData);
 	
 }
 
-// sous-fonction booléenne qui permet 
-
+/*
+* Function counting the number of children and appending the value in the name
+*/
 function countCommand(){
+
+	let values = Object.values(dataToRead);
+	let values2 = null;
+	let values3 = null;
 	
-	let countedData = {};
+	for(i = 0; i < values.length; i++){
+		values[i].name += " [";
+		values[i].name += values[i].people.length;
+		values[i].name += "]";
+		
+		values2 = Object.values(values[i].people);
+		
+		for(j = 0; j < values2.length ; j++){
+			
+			values[i].people[j].name += " [";
+			values[i].people[j].name += values2[j].animals.length;
+			values[i].people[j].name += "]";
+			
+		}
+	}
 	
+	console.log(JSON.stringify(values));
 	
-	console.log('count à compléter en pensant à prendre en compte loption');
-	// ouverture et parcours du fichier
-	
-	console.log();
 }
 
 // Main method call
