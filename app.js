@@ -4,7 +4,8 @@ const dataToRead = dataFile.data;
 /*
 * main function
 */
-function interprate(){
+function interpret(){
+	
 	// Number of arguments verification
 	if (process.argv.length != 3){
 		console.error('Invalid number of parameters. Expected 1 but got '+(process.argv.length-2));
@@ -62,12 +63,9 @@ function interprate(){
 */
 function filterCommand(commandOption){
 	
-	let values = Object.values(dataToRead);
-	let values2 = null;
-	let values3 = null;
-	let filteredData = {};
-	let people = {};
-	let animals = {};
+	var values = Object.values(dataToRead);
+	var values2 = null;
+	var values3 = null;
 	var i, j, k;
 	
 	for(i = 0; i < values.length; i++){
@@ -82,37 +80,35 @@ function filterCommand(commandOption){
 				
 				if (values3[k].name.includes(commandOption)){
 					
-					//if (filteredData['name'].indexOf(values[i].name) == -1){
-						filteredData['name'] = values[i].name;
-						filteredData['people'] = {};
-					//}
+					console.log("[\r");
+					console.log("\t{\r");
 					
-					//if (people['name'].indexOf(values2[j].name) == -1){
-						people['name'] = values2[j].name;
-						people['animals'] = {};
-					//}
+					console.log("\t\tname: '"+values[i].name+"',\r");
+					console.log("\t\tPeople: [\r");
 					
-					//if (animals['name'].indexOf(values3[k].name) == -1){
-						
-						animals['name'] = values3[k].name;
-						console.log(animals);
-						
-					//}
+					console.log("\t\t\t{\r");
 					
-					// à modifier : ajouter les animaux en prenant en compte le nom de la personne
-					// utiliser la même sémentique : values[i].people pour ajouter au bon indice
-					people['animals'] = animals;
+					console.log("\t\t\t\tname: '"+values2[j].name+"',\r");
+					console.log("\t\t\t\tanimals: [\r");
 					
-					// ici on écrase à chaque fois 
-					filteredData['people'] = people;
+					console.log("\t\t\t\t{\r");
 					
-					console.log(people);
+					console.log("\t\t\t\t\tname: '"+values3[k].name+"'\r");
+					
+					console.log("\t\t\t\t}\r");
+					
+					console.log("\t\t\t]\r");
+					
+					console.log("\t\t}\r");
+					
+					console.log("\t]\r");
+					
+					console.log("]\r");
+					
 				}
 			}
 		}
 	}
-	
-	//console.log(filteredData);
 	
 }
 
@@ -121,9 +117,9 @@ function filterCommand(commandOption){
 */
 function countCommand(){
 
-	let values = Object.values(dataToRead);
-	let values2 = null;
-	let values3 = null;
+	var values = Object.values(dataToRead);
+	var values2 = null;
+	var values3 = null;
 	
 	for(i = 0; i < values.length; i++){
 		values[i].name += " [";
@@ -141,9 +137,9 @@ function countCommand(){
 		}
 	}
 	
-	console.log(JSON.stringify(values));
+	console.log(JSON.stringify(values, null, 2));
 	
 }
 
 // Main method call
-interprate();
+interpret();
